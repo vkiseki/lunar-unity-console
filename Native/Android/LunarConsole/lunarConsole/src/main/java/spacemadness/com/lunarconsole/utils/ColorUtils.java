@@ -42,4 +42,20 @@ public final class ColorUtils {
     public static int getAlpha(int argb) {
         return (argb >> 24) & 0xff;
     }
+
+    public static String RGBAtoARGB(String rgba) {
+        if (rgba == null) {
+            throw new NullPointerException("rgba is null");
+        }
+
+        // rgba -> argb
+        if (rgba.length() == 8) {
+            return rgba.substring(6) + rgba.substring(0, 6);
+        }
+        // rgb -> argb
+        if (rgba.length() == 6) {
+            return "ff" + rgba;
+        }
+        return rgba;
+    }
 }

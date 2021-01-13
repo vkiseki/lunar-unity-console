@@ -64,6 +64,14 @@ public class StringUtils {
         }
     }
 
+    public static int parseIntFromHex(String str, int defaultValue) {
+        try {
+            return (int)Long.parseLong(str, 16);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
     public static Float parseFloat(String str) {
         try {
             return Float.parseFloat(str);

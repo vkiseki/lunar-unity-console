@@ -30,7 +30,8 @@ import java.util.Map;
 import spacemadness.com.lunarconsole.R;
 import spacemadness.com.lunarconsole.utils.StringUtils;
 
-import static spacemadness.com.lunarconsole.utils.StringUtils.parseInt;
+import static spacemadness.com.lunarconsole.utils.StringUtils.parseIntFromHex;
+import static spacemadness.com.lunarconsole.utils.ColorUtils.RGBAtoARGB;
 
 public class DefaultColorFactory implements ColorFactory {
     private final Context context;
@@ -83,8 +84,7 @@ public class DefaultColorFactory implements ColorFactory {
         }
 
         if (value.startsWith("#") && value.length() > 1) {
-            int colorId = parseInt(value.substring(1), R.color.lunar_console_color_rich_text_error);
-            return getColor(colorId);
+            return parseIntFromHex(RGBAtoARGB(value.substring(1)), getColor(R.color.lunar_console_color_rich_text_error));
         }
 
         return getColor(R.color.lunar_console_color_rich_text_error);
