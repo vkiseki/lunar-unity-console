@@ -53,7 +53,11 @@ BOOL LUStringTryParseInteger(NSString *str, NSInteger *outResult)
 BOOL LUStringTryParseHex(NSString *str, NSInteger *outResult) {
     if (str.length > 0) {
         NSScanner *scanner = [[NSScanner alloc] initWithString:str];
-        return [scanner scanInteger:outResult];
+        unsigned int scanResult;
+        if ([scanner scanHexInt:&scanResult]) {
+            *outResult = scanResult;
+            return YES;
+        }
     }
     
     return NO;

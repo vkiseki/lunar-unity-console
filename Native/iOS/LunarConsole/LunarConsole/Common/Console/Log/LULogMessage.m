@@ -411,6 +411,10 @@ static NSUInteger _parseColor(NSString *value) {
     }
     
     if ([value hasPrefix:@"#"]) {
+        if (value.length == 7) {
+            value = [value stringByAppendingString:@"ff"];
+        }
+                
         NSInteger result;
         if (LUStringTryParseHex([value substringFromIndex:1], &result)) {
             return result;
